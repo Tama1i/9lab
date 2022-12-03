@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 import sys
-from datetime import date
+import datetime
+
 if __name__ == '__main__':
     # Список работников.
     pep = []
@@ -19,8 +21,8 @@ if __name__ == '__main__':
             # Запросить данные о работнике.
             name = input("name faname? ")
             num = int(input("number? "))
-            br = int(input("burftday? "))
-
+            bday = list(map(int, input("Дата рождения: ").split('.')))
+            br = datetime.date(bday[2], bday[1], bday[0])
         # Создать словарь.
             chel = {
             'name': name,
@@ -55,14 +57,13 @@ if __name__ == '__main__':
 
             # Вывести данные о всех сотрудниках.
             for idx, chel in enumerate(pep, 1):
-                print(
-                    '| {:>4} | {:<30} | {:<20} | {:>8} |'.format(
-                        idx,
-                        chel.get('name', ''),
-                        chel.get('num', ''),
-                        chel.get('br', 0)
+               print(
+                    f'| {idx:>4} |'
+                    f' {chel.get("name", ""):<30} |'
+                    f' {chel.get("num", 0):<15} |'
+                    f' {chel.get("br")}      |'
                     )
-                )
+                
 
             print(line)
 
@@ -94,4 +95,5 @@ if __name__ == '__main__':
             print("exit - завершить работу с программой.")
         else:
             print(f"Неизвестная команда {command}", file=sys.stderr)
+
 
